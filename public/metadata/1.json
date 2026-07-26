@@ -1,0 +1,14 @@
+{
+  "name": "Modern Family Home",
+  "description": "A beautiful 3-bedroom home in a quiet neighborhood. (Placeholder listing for local testing.)",
+  "image": "https://placehold.co/600x400/2c3e50/ffffff?text=Property+%231",
+  "id": "1",
+  "address": "123 Example Street, Nawabshah",
+  "attributes": [
+    { "trait_type": "Purchase Price", "value": "20" },
+    { "trait_type": "Type", "value": "Residential" },
+    { "trait_type": "Bedrooms", "value": "3" },
+    { "trait_type": "Bathrooms", "value": "2" },
+    { "trait_type": "Square Feet", "value": "1500" }
+  ]
+}

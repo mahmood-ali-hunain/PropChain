@@ -1,0 +1,14 @@
+{
+  "name": "Suburban Starter Home",
+  "description": "A charming 2-bedroom starter home with a private yard. (Placeholder listing for local testing.)",
+  "image": "https://placehold.co/600x400/27ae60/ffffff?text=Property+%233",
+  "id": "3",
+  "address": "789 Maple Lane, Nawabshah",
+  "attributes": [
+    { "trait_type": "Purchase Price", "value": "10" },
+    { "trait_type": "Type", "value": "Residential" },
+    { "trait_type": "Bedrooms", "value": "2" },
+    { "trait_type": "Bathrooms", "value": "1" },
+    { "trait_type": "Square Feet", "value": "800" }
+  ]
+}
