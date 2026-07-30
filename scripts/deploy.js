@@ -38,8 +38,15 @@ async function main() {
 
   console.log(`✅ RealEstate (ERC-721) deployed at: ${realEstateAddress}`);
 
-  const metadataBaseUrl = process.env.REACT_APP_METADATA_BASE_URL || "http://localhost:3000/metadata";
-  const metadataUris = [1, 2, 3].map((id) => `${metadataBaseUrl}/${id}.json`);
+  const metadataBaseUrl = process.env.REACT_APP_METADATA_BASE_URL || "https://ipfs.io/ipfs";
+  const ipfsCid = process.env.REACT_APP_IPFS_CID || "";
+  const metadataUris = [1, 2, 3].map((id) => {
+    if (ipfsCid) {
+      return `${metadataBaseUrl}/${ipfsCid}/${id}.json`;
+    }
+
+    return `${process.env.PUBLIC_URL || ""}/metadata/${id}.json`;
+  });
 
   console.log(`\n🏠 Minting ${metadataUris.length} property NFTs...`);
   for (let i = 0; i < metadataUris.length; i++) {

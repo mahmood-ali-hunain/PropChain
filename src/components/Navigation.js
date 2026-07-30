@@ -3,17 +3,19 @@ import { ethers } from "ethers";
 
 import { formatAddress } from "../utils/formatters";
 
-const Navigation = ({ account, setAccount }) => {
+const Navigation = ({ account, connectWallet }) => {
   const connectHandler = async () => {
     if (!window.ethereum) {
       alert("MetaMask not detected! Please install MetaMask.");
       return;
     }
-    const accounts = await window.ethereum.request({
-      method: "eth_requestAccounts",
-    });
-    const account = ethers.getAddress(accounts[0]);
-    setAccount(account);
+
+    try {
+      await connectWallet();
+    } catch (err) {
+      console.error("Wallet connect error:", err);
+      alert("Failed to connect wallet. Please check MetaMask and try again.");
+    }
   };
 
   return (
@@ -26,11 +28,6 @@ const Navigation = ({ account, setAccount }) => {
           <span className="nav__name">PropChain</span>
           <span className="nav__subtitle">Decentralized Property Exchange</span>
         </div>
-      </div>
-
-      <div className="nav__badge">
-        <span className="nav__badge-dot"></span>
-        Ethereum · Localhost
       </div>
 
       {account ? (

@@ -1,0 +1,13 @@
+{
+  "name": "Luxury Villa",
+  "description": "An elegant villa with panoramic views and premium finishes.",
+  "image": "/metadata/images/property-2.jpg",
+  "address": "456 Skyline Avenue, Karachi",
+  "attributes": [
+    { "trait_type": "Purchase Price", "value": "15" },
+    { "trait_type": "Type", "value": "Luxury" },
+    { "trait_type": "Bedrooms", "value": "4" },
+    { "trait_type": "Bathrooms", "value": "3" },
+    { "trait_type": "Square Feet", "value": "2200" }
+  ]
+}

@@ -1,7 +1,7 @@
 {
   "name": "Cozy Downtown Apartment",
   "description": "A stylish 2-bedroom apartment close to the city center. (Placeholder listing for local testing.)",
-  "image": "https://placehold.co/600x400/2980b9/ffffff?text=Property+%232",
+  "image": "/metadata/images/property-2.svg",
   "id": "2",
   "address": "456 Center Avenue, Nawabshah",
   "attributes": [

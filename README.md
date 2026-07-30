@@ -64,7 +64,7 @@ REACT_APP_CHAIN_ID=1337
 REACT_APP_METADATA_BASE_URL=http://localhost:3000/metadata
 ```
 
-The frontend reads these values from [src/config.json](src/config.json) and the deployment script can be updated to use them in future iterations.
+The frontend reads these values from [src/config.json](src/config.json), and the deployment script can now be pointed at an IPFS gateway or a hosted metadata service.
 
 ## Testing
 

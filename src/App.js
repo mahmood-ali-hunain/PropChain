@@ -9,6 +9,7 @@ import Home from "./components/Home";
 import RealEstateABI from "./artifacts/contracts/RealEstate.sol/RealEstate.json";
 import EscrowABI from "./artifacts/contracts/Escrow.sol/Escrow.json";
 import config from "./config.json";
+import { loadMetadataForToken } from "./utils/metadata";
 
 const fallbackChainId = process.env.REACT_APP_CHAIN_ID || "1337";
 
@@ -20,63 +21,86 @@ function App() {
   const [home, setHome]         = useState({});
   const [toggle, setToggle]     = useState(false);
   const [loading, setLoading]   = useState(true);
+  const [error, setError]       = useState("");
 
   const loadBlockchainData = async () => {
-    if (typeof window.ethereum === "undefined") {
-      console.error("MetaMask not detected.");
+    setLoading(true);
+    setError("");
+
+    try {
+      const rpcUrl = process.env.REACT_APP_RPC_URL || "http://127.0.0.1:8545";
+      const readProvider = new ethers.JsonRpcProvider(rpcUrl);
+
+      const network = await readProvider.getNetwork();
+      const chainId = network.chainId.toString();
+      const networkConfig = config[chainId] || config[fallbackChainId] || config["1337"];
+
+      if (!networkConfig) {
+        setError("Network not configured. Start Hardhat localhost and refresh the page.");
+        return;
+      }
+
+      const realEstate = new ethers.Contract(
+        networkConfig.realEstate.address,
+        RealEstateABI.abi,
+        readProvider
+      );
+
+      const totalSupply = await realEstate.totalSupply();
+      const homes = [];
+
+      for (let i = 1; i <= Number(totalSupply); i++) {
+        const uri = await realEstate.tokenURI(i);
+        const metadata = await loadMetadataForToken(uri, i);
+        homes.push({ ...metadata, id: i });
+      }
+
+      setHomes(homes);
+
+      const escrowContract = new ethers.Contract(
+        networkConfig.escrow.address,
+        EscrowABI.abi,
+        readProvider
+      );
+      setEscrow(escrowContract);
+      setProvider(readProvider);
+    } catch (err) {
+      console.error("Blockchain load failed:", err);
+      setError("Unable to load blockchain data. Make sure Hardhat localhost is running and refresh the page.");
+    } finally {
       setLoading(false);
-      return;
     }
-
-    const provider = new ethers.BrowserProvider(window.ethereum);
-    setProvider(provider);
-
-    const network = await provider.getNetwork();
-    const chainId = network.chainId.toString();
-    const networkConfig = config[chainId] || config[fallbackChainId] || config["1337"];
-
-    if (!networkConfig) {
-      alert("Network not configured!\n\nSwitch MetaMask to Hardhat Localhost (Chain ID: 1337), then refresh.");
-      setLoading(false);
-      return;
-    }
-
-    const realEstate = new ethers.Contract(
-      networkConfig.realEstate.address,
-      RealEstateABI.abi,
-      provider
-    );
-
-    const totalSupply = await realEstate.totalSupply();
-    const homes = [];
-
-    for (let i = 1; i <= Number(totalSupply); i++) {
-      const uri      = await realEstate.tokenURI(i);
-      const response = await fetch(uri);
-      const metadata = await response.json();
-      homes.push({ ...metadata, id: i });
-    }
-
-    setHomes(homes);
-    setLoading(false);
-
-    const escrow = new ethers.Contract(
-      networkConfig.escrow.address,
-      EscrowABI.abi,
-      provider
-    );
-    setEscrow(escrow);
-
-    window.ethereum.on("accountsChanged", async () => {
-      const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
-      setAccount(ethers.getAddress(accounts[0]));
-    });
   };
 
   useEffect(() => {
     loadBlockchainData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const connectWallet = async () => {
+    if (!window.ethereum) {
+      setError("MetaMask not detected. Please install MetaMask and refresh the page.");
+      return;
+    }
+
+    try {
+      const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
+      if (!accounts?.length) {
+        return;
+      }
+
+      const userAccount = ethers.getAddress(accounts[0]);
+      setAccount(userAccount);
+      setProvider(new ethers.BrowserProvider(window.ethereum));
+      setError("");
+    } catch (err) {
+      if (err.code === 4001) {
+        return;
+      }
+      console.error("Wallet connect failed:", err);
+      setError("Failed to connect MetaMask. Please try again.");
+    }
+  };
 
   const togglePop = (home) => {
     setHome(home);
@@ -85,7 +109,7 @@ function App() {
 
   return (
     <>
-      <Navigation account={account} setAccount={setAccount} />
+      <Navigation account={account} connectWallet={connectWallet} />
       <Search />
 
       <main>
@@ -97,7 +121,13 @@ function App() {
             )}
           </div>
 
-          {loading ? (
+              {error ? (
+            <div className="loading-state error-state">
+              <div style={{ fontSize: "2.2rem" }}>⚠️</div>
+              <p>{error}</p>
+              <small>Refresh after fixing MetaMask or local blockchain settings.</small>
+            </div>
+          ) : loading ? (
             <div className="loading-state">
               <div style={{ fontSize: "2.2rem" }}>⏳</div>
               <p>Loading from blockchain...</p>

@@ -1,8 +1,7 @@
 {
   "name": "Modern Family Home",
-  "description": "A beautiful 3-bedroom home in a quiet neighborhood. (Placeholder listing for local testing.)",
-  "image": "/metadata/images/property-1.svg",
-  "id": "1",
+  "description": "A contemporary family home with open-plan living and a landscaped garden.",
+  "image": "/metadata/images/property-1.jpg",
   "address": "123 Example Street, Nawabshah",
   "attributes": [
     { "trait_type": "Purchase Price", "value": "20" },

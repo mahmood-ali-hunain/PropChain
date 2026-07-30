@@ -1,0 +1,13 @@
+{
+  "name": "City Loft",
+  "description": "A modern loft in a central business district with smart-home features.",
+  "address": "789 Business Street, Lahore",
+  "image": "/metadata/images/property-3.jpg",
+  "attributes": [
+    { "trait_type": "Purchase Price", "value": "10" },
+    { "trait_type": "Type", "value": "Loft" },
+    { "trait_type": "Bedrooms", "value": "2" },
+    { "trait_type": "Bathrooms", "value": "2" },
+    { "trait_type": "Square Feet", "value": "1300" }
+  ]
+}
