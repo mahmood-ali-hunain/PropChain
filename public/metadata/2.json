@@ -1,14 +1,15 @@
 {
-  "name": "Cozy Downtown Apartment",
-  "description": "A stylish 2-bedroom apartment close to the city center. (Placeholder listing for local testing.)",
-  "image": "/metadata/images/property-2.svg",
+  "name": "Oceanview Luxury Villa",
+  "description": "An upscale 4-bedroom villa with panoramic sea views, a private pool, expansive terrace, and floor-to-ceiling windows. Modern interiors, landscaped grounds, and secure gated access — ideal for luxury coastal living.",
+  "image": "/metadata/images/property-2-card.png",
+  "detail_image": "/metadata/images/property-2-detail.png",
   "id": "2",
-  "address": "456 Center Avenue, Nawabshah",
+  "address": "Horizon Bay, Clifton, Karachi",
   "attributes": [
-    { "trait_type": "Purchase Price", "value": "15" },
-    { "trait_type": "Type", "value": "Residential" },
-    { "trait_type": "Bedrooms", "value": "2" },
-    { "trait_type": "Bathrooms", "value": "1" },
-    { "trait_type": "Square Feet", "value": "950" }
+    { "trait_type": "Purchase Price", "value": "35" },
+    { "trait_type": "Type", "value": "Luxury" },
+    { "trait_type": "Bedrooms", "value": "4" },
+    { "trait_type": "Bathrooms", "value": "3" },
+    { "trait_type": "Square Feet", "value": "2200" }
   ]
 }

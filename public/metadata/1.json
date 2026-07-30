@@ -1,11 +1,12 @@
 {
   "name": "Modern Family Home",
-  "description": "A beautiful 3-bedroom home in a quiet neighborhood. (Placeholder listing for local testing.)",
-  "image": "/metadata/images/property-1.svg",
+  "description": "A beautiful 3-bedroom home in a quiet neighborhood.",
+  "image": "/metadata/images/property-1-card.png",
+  "detail_image": "/metadata/images/property-1-detail.png",
   "id": "1",
-  "address": "123 Example Street, Nawabshah",
+  "address": "Richmond, South West London",
   "attributes": [
-    { "trait_type": "Purchase Price", "value": "20" },
+    { "trait_type": "Purchase Price", "value": "150" },
     { "trait_type": "Type", "value": "Residential" },
     { "trait_type": "Bedrooms", "value": "3" },
     { "trait_type": "Bathrooms", "value": "2" },

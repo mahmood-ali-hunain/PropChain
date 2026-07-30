@@ -143,7 +143,7 @@ const Home = ({ home, provider, account, escrow, togglePop }) => {
 
         {/* Left — Image */}
         <div className="home__image-wrap">
-          <img src={home.image} alt={home.name} />
+          <img src={home.detail_image || home.image} alt={home.name} />
           <div className="home__image-badge">
             {owner ? `✅ ${getPropertyStatusLabel(owner)}` : "🏷️ Listed"}
           </div>

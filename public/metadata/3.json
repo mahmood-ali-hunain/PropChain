@@ -1,11 +1,11 @@
 {
   "name": "Suburban Starter Home",
-  "description": "A charming 2-bedroom starter home with a private yard. (Placeholder listing for local testing.)",
-  "image": "/metadata/images/property-3.svg",
-  "id": "3",
-  "address": "789 Maple Lane, Nawabshah",
+  "description": "A charming 2-bedroom starter home with a private yard and a cozy living room.",
+  "image": "/metadata/images/property-3-card.png",
+  "detail_image": "/metadata/images/property-3-detail.png",  "id": "3",
+  "address": "DHA Phase 1, Karachi",
   "attributes": [
-    { "trait_type": "Purchase Price", "value": "10" },
+    { "trait_type": "Purchase Price", "value": "12" },
     { "trait_type": "Type", "value": "Residential" },
     { "trait_type": "Bedrooms", "value": "2" },
     { "trait_type": "Bathrooms", "value": "1" },
