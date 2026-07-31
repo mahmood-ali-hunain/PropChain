@@ -1,17 +1,19 @@
 // src/components/Navigation.js
-import { ethers } from "ethers";
-
 import { formatAddress } from "../utils/formatters";
 
 const Navigation = ({ account, connectWallet }) => {
   const connectHandler = async () => {
-    if (!window.ethereum) {
+    if (typeof window.ethereum === "undefined") {
       alert("MetaMask not detected! Please install MetaMask.");
       return;
     }
 
     try {
-      await connectWallet();
+      if (connectWallet) {
+        await connectWallet();
+      } else {
+        await window.ethereum.request({ method: "eth_requestAccounts" });
+      }
     } catch (err) {
       console.error("Wallet connect error:", err);
       alert("Failed to connect wallet. Please check MetaMask and try again.");

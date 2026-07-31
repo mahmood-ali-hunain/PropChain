@@ -22,6 +22,22 @@ function App() {
   const [toggle, setToggle]     = useState(false);
   const [loading, setLoading]   = useState(true);
 
+  const connectWallet = async () => {
+    if (typeof window.ethereum === "undefined") {
+      throw new Error("MetaMask not detected.");
+    }
+
+    const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
+
+    if (accounts?.[0]) {
+      setAccount(ethers.getAddress(accounts[0]));
+    } else {
+      setAccount(null);
+    }
+
+    return accounts?.[0] || null;
+  };
+
   const loadBlockchainData = async () => {
     if (typeof window.ethereum === "undefined") {
       console.error("MetaMask not detected.");
@@ -67,9 +83,12 @@ function App() {
     );
     setEscrow(escrow);
 
-    window.ethereum.on("accountsChanged", async () => {
-      const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
-      setAccount(ethers.getAddress(accounts[0]));
+    window.ethereum.on("accountsChanged", async (accounts) => {
+      if (accounts?.length > 0) {
+        setAccount(ethers.getAddress(accounts[0]));
+      } else {
+        setAccount(null);
+      }
     });
   };
 
@@ -85,7 +104,7 @@ function App() {
 
   return (
     <>
-      <Navigation account={account} setAccount={setAccount} />
+      <Navigation account={account} connectWallet={connectWallet} />
       <Search />
 
       <main>
