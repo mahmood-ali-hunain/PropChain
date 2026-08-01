@@ -21,7 +21,8 @@ Three-tier architecture:
 - **Storage:** IPFS for decentralized property metadata
 
 ## 📸 Screenshots
-![PropChain UI](./public/screenshot2026-07-31225250.png)
+
+![PropChain UI](./public/Screenshot.png)
 
 ## Project structure
 
