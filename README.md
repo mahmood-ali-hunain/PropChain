@@ -1,4 +1,8 @@
 # PropChain
+![Solidity](https://img.shields.io/badge/Solidity-363636?style=flat&logo=solidity)
+![React](https://img.shields.io/badge/React-20232A?style=flat&logo=react)
+![Hardhat](https://img.shields.io/badge/Hardhat-yellow?style=flat)
+![Ethers.js](https://img.shields.io/badge/Ethers.js-2535a0?style=flat)
 
 PropChain is a decentralized real-estate marketplace built with Solidity, Hardhat, React, and Ethers.js. It lets sellers list properties as NFTs, buyers deposit earnest money, inspectors approve inspections, lenders fund the transaction, and the sale can be finalized through an escrow contract.
 
