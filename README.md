@@ -14,6 +14,15 @@ PropChain is a decentralized real-estate marketplace built with Solidity, Hardha
 - React frontend connected to a local Hardhat network
 - Metadata stored in local public files for development
 
+## Architecture
+Three-tier architecture:
+- **Frontend:** React.js + Ethers.js (wallet connection, contract interaction)
+- **Smart Contracts:** Solidity — ERC-721 NFT contract + multi-party Escrow contract
+- **Storage:** IPFS for decentralized property metadata
+
+## 📸 Screenshots
+![PropChain UI](./public/screenshot2026-07-31225250.png)
+
 ## Project structure
 
 - contracts/: Solidity smart contracts
@@ -75,6 +84,12 @@ The frontend reads these values from [src/config.json](src/config.json), and the
 ```bash
 npx hardhat test
 ```
+## 🧠 Key Learnings
+
+- Implementing trustless atomic swaps using the Escrow smart contract pattern
+- ERC-721 token standards and storing NFT metadata on IPFS
+- Writing and running Hardhat test suites for smart contract validation
+- Connecting a React frontend to Ethereum via Ethers.js v6
 
 ## Notes
 
